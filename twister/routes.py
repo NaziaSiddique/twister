@@ -4,7 +4,7 @@ imports app and db from twister package
 """
 from flask import render_template
 from twister import app, db
-#from twister.models import Category, Task
+from twister.models import Category, Task
 
 
 @app.route("/")
