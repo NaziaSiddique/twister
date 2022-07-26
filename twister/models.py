@@ -5,9 +5,9 @@ from flask_login import LoginManager, login_user, logout_user, current_user, log
 
 # MODELS
 
-#Model for user
+# Model for user Postgres
 class User(db.Model, UserMixin):
-    def __init__(self, id, name,username, email, password, image_file):
+    def __init__(self, id, name, username, email, password, image_file):
         self.id = id
         self.name = name
         self.username = username
@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 
-#Model for Posts
+# Model for Posts for Postgres
 class Post(db.Model):
     def __init__(self, id, date_posted, content, user_id, post_image):
         self.id = id
@@ -45,7 +45,8 @@ class Post(db.Model):
         return f"Post('{self.date_posted}', '{self.content}', '{self.user_id}', '{self.post_image}')"
 
 
-#Model for Comments
+"""
+# Model for Comments Mongo DB and all the rest below
 class Comment(db.Model):
     def __init__(self, id, date_posted, content, user_id, post_id):
         self.id = id
@@ -62,7 +63,7 @@ class Comment(db.Model):
         return f"Comment('{self.date_posted}', '{self.content}')"
 
 
-#Model for Follow
+# Model for Follow
 class Follow(db.Model):
     def __init__(self, id, user_id, follower_id):
         self.id = id
@@ -75,7 +76,7 @@ class Follow(db.Model):
         return f"Follow('{self.user_id}', '{self.follower_id}')"
 
 
-#Model for Likes
+# Model for Likes
 class Like(db.Model):
     def __init__(self, id, user_id, post_id):
         self.id = id
@@ -88,7 +89,7 @@ class Like(db.Model):
         return f"Like('{self.user_id}', '{self.post_id}')"
 
 
-#Model for Dislikes
+# Model for Dislikes
 class Dislike(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -97,7 +98,7 @@ class Dislike(db.Model):
         return f"Dislike('{self.user_id}', '{self.post_id}')"
 
 
-#Model for Report feature
+# Model for Report feature
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -106,7 +107,7 @@ class Report(db.Model):
         return f"Report('{self.user_id}', '{self.post_id}')"
 
 
-#Model for retweet
+# Model for retweet
 class Retweet(db.Model):
     def __init__(self, id, user_id, post_id):
         self.id = id
@@ -118,3 +119,4 @@ class Retweet(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
     def __repr__(self):
         return f"Retweet('{self.user_id}', '{self.post_id}')"
+        """
